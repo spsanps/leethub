@@ -4,5 +4,13 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         """
-        return len(set(nums)) != len(nums) 
+        nums.sort()
+        prev = nums[0]
+        for i in nums[1:]:
+            if i == prev: return True
+            prev = i 
+        return False
+            
+            
+            
         
