@@ -17,7 +17,8 @@ public:
         //    cout << "\n";
         //}
         
-        vector<int> q = {0};
+        priority_queue<int> q;
+        q.push(0);
         
         //make_heap(q.begin(), q.end());
         
@@ -26,16 +27,12 @@ public:
         for (auto & elem : courses) {
             dur = elem[0]; ld = elem[1];
             if (dur + tdur <= ld ) {
-                q.push_back(dur);
-                push_heap(q.begin(), q.end());
+                q.push(dur);
                 tdur += dur;
-            } else if (dur < q.front()) {
-                tdur -= q.front() - dur;
-                
-                pop_heap(q.begin(), q.end());
-                q.pop_back();
-                q.push_back(dur);
-                push_heap(q.begin(), q.end());
+            } else if (dur < q.top()) {
+                tdur -= q.top() - dur;
+                q.pop();
+                q.push(dur);
             }
             
             //for (auto & aele : q) {
