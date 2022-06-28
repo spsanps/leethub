@@ -9,7 +9,7 @@ class Solution(object):
         for c in s:
             l[ord(c) - ord('a')] += 1
             
-        l = [i for i in l if i != 0]
+        #l = [i for i in l if i != 0]
         l.sort(reverse = True)
        
         c = 0
