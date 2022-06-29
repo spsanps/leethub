@@ -14,9 +14,7 @@ class Solution(object):
         people.sort(key = lambda x: -(x[0]<<11) + x[1])
         #e = None
         for i in xrange(len(people)):
-            k = 0
-            while people[i][1] < i - k:
-                k += 1
+            k =  i - people[i][1]
             if k > 0:
                 e = people.pop(i)
                 people.insert(i - k, e)
