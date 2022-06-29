@@ -11,7 +11,7 @@ class Solution(object):
         
         #7 7 6 52 5 4
         
-        people.sort(key = lambda x: -x[0]*(2048) + x[1])
+        people.sort(key = lambda x: -(x[0]<<11) + x[1])
         #e = None
         for i in xrange(len(people)):
             k = 0
