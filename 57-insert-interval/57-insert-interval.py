@@ -1,39 +1,57 @@
-class Solution(object):
-    def insert(self, Is, nI):
-        """
-        :type intervals: List[List[int]]
-        :type newInterval: List[int]
-        :rtype: List[List[int]]
-        """
+class Solution:
+    def insert(self, Is: List[List[int]], nI: List[int]) -> List[List[int]]:
         
-        ret = []
+        
+        if len(Is) == 0: return [nI]
+        def bs(A, l, r):
+            mid = 0
+            while True:
+                prev_mid = mid
+                mid = (l + r)//2
+                if mid == prev_mid: return mid
+                #print(l, r, mid)
+                if Is[mid][0] == A:
+                    return mid
+                elif Is[mid][0] > A:
+                    r = mid + 1
+                else:
+                    l = mid - 1
+                
+            return mid
+        
         na, nb = nI
         
-        start = done = False
-        for a, b in Is:
-            if not start:
-                if not done and na <= b: 
-                    new_a = min(a, na)
-                    start = True
-                else:
-                    ret.append([a, b])
-            
-            if start:
-                if nb < a:
-                    ret.append([new_a, nb])
-                    ret.append([a, b])
-                    done = True
-                    start = False
-                else:
-                    if nb < b: nb = b
-                        
-        if not done:
-            if start:
-                ret.append([new_a, nb])
-            else:
-                ret.append(nI)
+        i = bs(na, 0, len(Is) - 1)
         
-        return ret
+        
+        while i < len(Is) and Is[i][0] < na :
+            i += 1
+        while i > 0 and Is[i - 1][0] > na:
+            i -= 1
+        #print(i)
+        
+        if i == len(Is):
+            Is.append(nI)
+        else:
+            Is.insert(i, nI)
+        
+        if i > 0 and Is[i - 1][1] >= na:
+            Is[i][0] = Is[i - 1][0]
+            Is[i][1] = max(Is[i][1], Is[i - 1][1])
+            Is.pop(i - 1)
+            i -= 1
+        
+        i += 1
+        while i < len(Is):
+            if Is[i][0] <= Is[i - 1][1]:
+                Is[i - 1][1] = max(Is[i][1], Is[i - 1][1])
+                Is.pop(i)
+            else:
+                break
             
-                
+        
+        return Is
+            
+        
+        
         
