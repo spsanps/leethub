@@ -1,26 +1,33 @@
-class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        
+        
         l = 0
-        maxl = 0
-        let_pos = {}
-        for i in range(len(s)):
-            c = s[i]
+        let = [-1]*256
+        ans = 0
+        i = 0
+        for i in xrange(len(s)):
+            ind = ord(s[i])
             
-            if c in let_pos and let_pos[c] != -1:
-                ltemp = let_pos[c] + 1
-                for c in s[l:ltemp]:
-                    let_pos[c] = -1
+            #print(let[ind])
+            
+            
+            
+            if let[ind] != -1:
+                l = max(let[ind] + 1, l)
+            
+            let[ind] = i
+            
                 
-                l = ltemp
-
-            let_pos[c] = i
-                
+            #print(l, i, ans, let[ind])
+            ans = max(ans, i - l + 1)
             
-            d = i - l + 1
-            
-            
-            if d > maxl: maxl = d
-                
-        return maxl
-            
+        return ans
+           
+        
+        
         
