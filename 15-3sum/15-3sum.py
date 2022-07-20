@@ -72,7 +72,7 @@ class Solution(object):
                 
                 if s == 0:
                     if j > 0 and nums[j - 1] == 0:
-                        sol.append([nums[j], nums[i], -s])
+                        sol.append([0, 0, 0])
                         continue
                     else:
                         continue
