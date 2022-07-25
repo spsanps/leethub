@@ -14,7 +14,7 @@ class Solution(object):
         while l <= r:
             mid = (l + r)//2
             
-            print(l, mid, r)
+            #print(l, mid, r)
             
             if t <= Ns[mid]:
                 r = mid - 1
@@ -30,7 +30,7 @@ class Solution(object):
         while l <= r:
             mid2 = (l + r)//2
             
-            print(l, mid2, r)
+            #print(l, mid2, r)
             
             if t < Ns[mid2]:
                 r = mid2 - 1
