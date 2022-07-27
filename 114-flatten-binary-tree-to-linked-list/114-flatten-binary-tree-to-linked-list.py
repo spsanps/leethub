@@ -14,22 +14,18 @@ class Solution(object):
         
         stack = [root.right, root.left]
         prev = root
+        
         while stack:
-            #print([c.val for c in stack])
+
             c = stack.pop()
             if c is None: continue
-                
-            #print(c.val)
-            
+                            
             stack.append(c.right)
             stack.append(c.left)
       
             prev.right = c
             prev.left = None
-            prev = c
-        
-
-                       
+            prev = c              
             
         return root
             
