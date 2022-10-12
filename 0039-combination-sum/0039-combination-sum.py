@@ -7,8 +7,8 @@ class Solution:
             sols =[]
             #print('T:', T)
             
-            if T < 0: return []
-            if T == 0: return [[]]
+            #if T < 0: return []
+            #if T == 0: return [[]]
             
             for i in range(c_i, len(Cs)):
                 c = Cs[i]
